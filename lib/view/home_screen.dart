@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 
 import '../provider/image_picker_provider.dart';
 
-
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
@@ -23,7 +22,6 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Consumer<ImagePickerProvider>(
         builder: (context, provider, child) {
-
           if (provider.imageModel.hasError) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -48,7 +46,7 @@ class HomeScreen extends StatelessWidget {
 
           return Container(
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.background,
+              color: Theme.of(context).colorScheme.surface,
             ),
             child: SafeArea(
               child: Padding(
@@ -56,7 +54,6 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-
                     TweenAnimationBuilder(
                       tween: Tween<double>(begin: 0, end: 1),
                       duration: const Duration(milliseconds: 800),
@@ -81,14 +78,9 @@ class HomeScreen extends StatelessWidget {
 
                     const SizedBox(height: 30),
 
-
-                    Expanded(
-                      flex: 3,
-                      child: ImageDisplayWidget(),
-                    ),
+                    Expanded(flex: 3, child: ImageDisplayWidget()),
 
                     const SizedBox(height: 30),
-
 
                     TweenAnimationBuilder(
                       tween: Tween<double>(begin: 0, end: 1),
@@ -122,15 +114,15 @@ class HomeScreen extends StatelessWidget {
 
                     const SizedBox(height: 20),
 
-
                     AnimatedOpacity(
                       opacity: provider.imageModel.hasImage ? 1.0 : 0.0,
                       duration: const Duration(milliseconds: 300),
-                      child: provider.imageModel.hasImage
-                          ? ClearButtonWidget(
-                        onPressed: () => provider.clearImage(),
-                      )
-                          : const SizedBox.shrink(),
+                      child:
+                          provider.imageModel.hasImage
+                              ? ClearButtonWidget(
+                                onPressed: () => provider.clearImage(),
+                              )
+                              : const SizedBox.shrink(),
                     ),
                   ],
                 ),

@@ -4,7 +4,6 @@ import 'package:piscible_task/utils/permission_handler.dart';
 import 'package:piscible_task/view/home_screen.dart';
 import 'package:provider/provider.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await requestPermissions();
@@ -15,6 +14,7 @@ Future<void> requestPermissions() async {
   await PermissionUtils.requestCameraPermission();
   await PermissionUtils.requestStoragePermission();
 }
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -32,11 +32,11 @@ class MyApp extends StatelessWidget {
             brightness: Brightness.light,
             primary: Colors.blueGrey.shade700,
             secondary: Colors.blueGrey.shade200,
-            background: Colors.grey.shade50,
+            tertiary: Colors.blueGrey.shade100,
             surface: Colors.white,
           ),
           scaffoldBackgroundColor: Colors.grey.shade50,
-          cardTheme: CardTheme(
+          cardTheme: CardThemeData(
             color: Colors.white,
             elevation: 3,
             shadowColor: Colors.blueGrey.shade100,
