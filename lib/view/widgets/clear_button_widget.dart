@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 class ClearButtonWidget extends StatefulWidget {
   final VoidCallback onPressed;
 
-  const ClearButtonWidget({
-    super.key,
-    required this.onPressed,
-  });
+  const ClearButtonWidget({super.key, required this.onPressed});
 
   @override
   State<ClearButtonWidget> createState() => _ClearButtonWidgetState();
@@ -25,12 +22,10 @@ class _ClearButtonWidgetState extends State<ClearButtonWidget>
       vsync: this,
     );
 
-    scaleAnimation = Tween<double>(begin: 1.0, end: 0.95).animate(
-      CurvedAnimation(
-        parent: controller,
-        curve: Curves.easeInOut,
-      ),
-    );
+    scaleAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.95,
+    ).animate(CurvedAnimation(parent: controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -51,10 +46,7 @@ class _ClearButtonWidgetState extends State<ClearButtonWidget>
       child: AnimatedBuilder(
         animation: scaleAnimation,
         builder: (context, child) {
-          return Transform.scale(
-            scale: scaleAnimation.value,
-            child: child,
-          );
+          return Transform.scale(scale: scaleAnimation.value, child: child);
         },
         child: Container(
           height: 60,
@@ -63,7 +55,7 @@ class _ClearButtonWidgetState extends State<ClearButtonWidget>
             borderRadius: BorderRadius.circular(15),
             boxShadow: [
               BoxShadow(
-                color: Colors.red.shade400.withOpacity(0.3),
+                color: Colors.red.shade400.withValues(alpha: 0.3),
                 blurRadius: 10,
                 offset: const Offset(0, 5),
               ),
@@ -72,10 +64,7 @@ class _ClearButtonWidgetState extends State<ClearButtonWidget>
           child: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
-                Icons.delete_outline,
-                color: Colors.white,
-              ),
+              Icon(Icons.delete_outline, color: Colors.white),
               SizedBox(width: 10),
               Text(
                 'Clear Image',

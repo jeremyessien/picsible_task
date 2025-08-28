@@ -29,12 +29,10 @@ class _UploadButtonWidgetState extends State<UploadButtonWidget>
       vsync: this,
     );
 
-    scaleAnimation = Tween<double>(begin: 1.0, end: 0.95).animate(
-      CurvedAnimation(
-        parent: controller,
-        curve: Curves.easeInOut,
-      ),
-    );
+    scaleAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.95,
+    ).animate(CurvedAnimation(parent: controller, curve: Curves.easeInOut));
   }
 
   @override
@@ -56,10 +54,7 @@ class _UploadButtonWidgetState extends State<UploadButtonWidget>
         child: AnimatedBuilder(
           animation: scaleAnimation,
           builder: (context, child) {
-            return Transform.scale(
-              scale: scaleAnimation.value,
-              child: child,
-            );
+            return Transform.scale(scale: scaleAnimation.value, child: child);
           },
           child: Container(
             height: 120,
@@ -70,14 +65,19 @@ class _UploadButtonWidgetState extends State<UploadButtonWidget>
                 colors: [
                   Theme.of(context).colorScheme.primary,
                   Theme.of(context).colorScheme.primary.withBlue(
-                    (Theme.of(context).colorScheme.primary.blue + 40).clamp(0, 255),
+                    ((Theme.of(context).colorScheme.primary.b * 255.0).round() +
+                            40)
+                        .clamp(0, 255)
+                        .toInt(),
                   ),
                 ],
               ),
               borderRadius: BorderRadius.circular(15),
               boxShadow: [
                 BoxShadow(
-                  color: Theme.of(context).colorScheme.primary.withOpacity(0.3),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.primary.withValues(alpha: 0.3),
                   blurRadius: 10,
                   offset: const Offset(0, 5),
                 ),
@@ -86,11 +86,7 @@ class _UploadButtonWidgetState extends State<UploadButtonWidget>
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
-                  widget.icon,
-                  size: 36,
-                  color: Colors.white,
-                ),
+                Icon(widget.icon, size: 36, color: Colors.white),
                 const SizedBox(height: 10),
                 Text(
                   widget.label,
